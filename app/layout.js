@@ -1,5 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "../styles/globals.css";
+import '@livekit/components-styles';
+import '@livekit/components-styles/prefabs';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
