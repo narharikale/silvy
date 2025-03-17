@@ -1,4 +1,3 @@
-
 'use client'
 
 import { useState } from 'react'
@@ -15,12 +14,59 @@ export default function Home() {
   const handlerModalClose = () => {
     setIsModalOpen(false)
   }
-  
+
   return (
     <div className={styles.container}>
-      <button className={styles.joinButton} onClick={handlerModalOpen}>
-        Join Meeting
-      </button>
+      <main className={styles.main}>
+        <section className={styles.hero}>
+          <div className={styles.homeHero}>
+            <div className={styles.homeHeroInner}>
+              <div>
+                <div>
+                  <li>Buttons</li>
+                  <li>Transitions</li>
+                  <li>Components</li>
+                  <li>Loader</li>
+                  <li>Animations</li>
+
+
+
+                </div>
+                <div>
+                  <li>Documentation</li>
+                  <li>Tools</li>
+                  <li>References</li>
+                  <li>Tutorials</li>
+
+                </div>
+              </div>
+              <div>
+                <h1>Start Intergrating Phonio on Your Website</h1>
+
+                <div>
+
+                  <button> Join meet</button>
+                  <button> Contant us</button>
+
+                </div>
+              </div>
+
+              <div> hidden</div>
+              <div>
+                <p> lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                  lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                  lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                  lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                  lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+
+
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </section>
+      </main>
       <MeetModal isOpen={isModalOpen} onClose={handlerModalClose} />
     </div>
   );
