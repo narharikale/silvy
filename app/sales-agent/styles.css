@@ -1,0 +1,22 @@
+.join-button {
+  position: fixed;
+  top: 20px;
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  z-index: 1000;
+}
+
+.join-button:hover {
+  background-color: #0056b3;
+}
+
+.join-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+} 

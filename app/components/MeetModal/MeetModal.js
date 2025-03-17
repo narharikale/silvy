@@ -10,7 +10,7 @@ export default function MeetModal({ isOpen, onClose }) {
         <>
             <div className={styles.overlay} onClick={onClose}></div>
             <div className={styles.modal}>
-                <Meet/>
+                <Meet onClose={onClose}/>
             </div>
         </>
     )

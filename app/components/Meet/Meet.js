@@ -19,9 +19,9 @@ import { decodePassphrase } from '../../../lib/client-utils';
 
 const CONN_DETAILS_ENDPOINT = '/api/connection';
 
-export function Meet() {
+export function Meet({ onClose, initialConnectionDetails, initialPreJoinChoices }) {
   const [preJoinChoices, setPreJoinChoices] = useState(
-    undefined,
+    initialPreJoinChoices || undefined,
   );
   const preJoinDefaults = useMemo(() => {
     return {
@@ -32,20 +32,32 @@ export function Meet() {
   }, []);
   
   const [connectionDetails, setConnectionDetails] = useState(
-    undefined,
+    initialConnectionDetails || undefined,
   );
 
   const handlePreJoinSubmit = useCallback(async (values) => {
     setPreJoinChoices(values);
     const url = new URL(CONN_DETAILS_ENDPOINT, window.location.origin);
     url.searchParams.append('roomName', '123room');
-    url.searchParams.append('participantName', 'another');
+    url.searchParams.append('participantName', values.username || 'another');
    
     const connectionDetailsResp = await fetch(url.toString());
     const connectionDetailsData = await connectionDetailsResp.json();
     setConnectionDetails(connectionDetailsData);
   }, []);
+
   const handlePreJoinError = useCallback(() => console.error(e), []);
+
+  // If we have initial values, we don't need to show the pre-join form
+  if (initialPreJoinChoices && initialConnectionDetails) {
+    return (
+      <VideoConferenceComponent
+        connectionDetails={initialConnectionDetails}
+        userChoices={initialPreJoinChoices}
+        onClose={onClose}
+      />
+    );
+  }
 
   return (
     <main data-lk-theme="default" style={{ height: '100%' }}>
@@ -61,13 +73,14 @@ export function Meet() {
         <VideoConferenceComponent
           connectionDetails={connectionDetails}
           userChoices={preJoinChoices}
+          onClose={onClose}
         />
       )}
     </main>
   );
 }
 
-function VideoConferenceComponent({ connectionDetails, userChoices }) {
+function VideoConferenceComponent({ connectionDetails, userChoices, onClose }) {
   const e2eePassphrase =
     typeof window !== 'undefined' && decodePassphrase(location.hash.substring(1));
 
@@ -81,25 +94,19 @@ function VideoConferenceComponent({ connectionDetails, userChoices }) {
 
   const roomOptions = useMemo(() => {
     return {
-      // Video settings
       videoCaptureDefaults: {
         resolution: VideoPresets.h720,
       },
-      // Audio settings
       audioCaptureDefaults: {
         echoCancellation: true,
         noiseSuppression: true,
       },
-      // Publishing defaults
       publishDefaults: {
         videoSimulcastLayers: [VideoPresets.h540, VideoPresets.h216],
         videoCodec: 'vp8',
       },
-      // Enable adaptive streaming
       adaptiveStream: true,
-      // Enable dynacast
       dynacast: true,
-      // Basic WebRTC configuration
       rtcConfig: {
         iceServers: [
           {
@@ -141,7 +148,6 @@ function VideoConferenceComponent({ connectionDetails, userChoices }) {
   }, []);
 
   const router = useRouter();
-  const handleOnLeave = useCallback(() => router.push('/'), [router]);
   const handleError = useCallback((error) => {
     console.error(error);
     alert(`Encountered an unexpected error, check the console logs for details: ${error.message}`);
@@ -163,12 +169,13 @@ function VideoConferenceComponent({ connectionDetails, userChoices }) {
         connectOptions={connectOptions}
         video={userChoices.videoEnabled}
         audio={userChoices.audioEnabled}
-        onDisconnected={handleOnLeave}
+        onDisconnected={onClose}
         onEncryptionError={handleEncryptionError}
         onError={handleError}
       >
         <VideoConference
           chatMessageFormatter={formatChatMessageLinks}
+          
         />
       </LiveKitRoom>
     </>
