@@ -29,7 +29,7 @@ export default function SalesAgent() {
   };
 
   const handleJoinMeeting = () => {
-    setIsJoined(true);
+    //setIsJoined(true);
   };
 
   return (
