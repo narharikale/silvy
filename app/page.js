@@ -1,20 +1,6 @@
-'use client'
-
-import { useState } from 'react'
-import MeetModal from './components/MeetModal/MeetModal'
-import styles from '../styles/home.module.css'
+import styles from "../styles/home.module.css";
 
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false)
-
-  const handlerModalOpen = () => {
-    setIsModalOpen(true)
-  }
-
-  const handlerModalClose = () => {
-    setIsModalOpen(false)
-  }
-
   return (
     <div className={styles.container}>
       <main className={styles.main}>
@@ -28,46 +14,59 @@ export default function Home() {
                   <li>Components</li>
                   <li>Loader</li>
                   <li>Animations</li>
-
-
-
                 </div>
                 <div>
                   <li>Documentation</li>
                   <li>Tools</li>
                   <li>References</li>
                   <li>Tutorials</li>
-
                 </div>
               </div>
               <div>
                 <h1>Start Intergrating Phonio on Your Website</h1>
 
                 <div>
-
                   <button> Join meet</button>
                   <button> Contant us</button>
-
                 </div>
               </div>
 
               <div> hidden</div>
               <div>
-                <p> lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-                  lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-                  lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-                  lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-                  lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-
-
+                <p>
+                  {" "}
+                  lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Quisquam, quos. lorem ipsum dolor sit amet consectetur
+                  adipisicing elit. Quisquam, quos. lorem ipsum dolor sit amet
+                  consectetur adipisicing elit. Quisquam, quos. lorem ipsum
+                  dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+                  lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Quisquam, quos.
                 </p>
               </div>
+            </div>
+          </div>
+        </section>
 
+        <section>
+          <h1>
+            We built Osmo to help creative developers work smarter, faster, and
+            better.
+          </h1>
+
+          <div>
+            <div>
+              <p>Trusted By</p>
+              <div>ImageSlider</div>
+            </div>
+
+            <div>
+              Carousel
+              <div>₹</div>
             </div>
           </div>
         </section>
       </main>
-      <MeetModal isOpen={isModalOpen} onClose={handlerModalClose} />
     </div>
   );
 }
