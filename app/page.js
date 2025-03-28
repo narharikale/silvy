@@ -1,21 +1,23 @@
 import styles from "../styles/home.module.css";
 
+import Testimonials from "./components/Testimonials/Testimonials";
+
 export default function Home() {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <section className={styles.hero}>
+        <section className={styles.heroSection}>
           <div className={styles.homeHero}>
             <div className={styles.homeHeroInner}>
-              <div>
-                <div>
+              <div className={styles.actionItemContainer}>
+                <div className={styles.actionItemList}>
                   <li>Buttons</li>
                   <li>Transitions</li>
                   <li>Components</li>
                   <li>Loader</li>
                   <li>Animations</li>
                 </div>
-                <div>
+                <div className={styles.actionItemList}>
                   <li>Documentation</li>
                   <li>Tools</li>
                   <li>References</li>
@@ -23,49 +25,30 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <h1>Start Intergrating Phonio on Your Website</h1>
+                <h1 className={styles.heroTitle}>
+                  Start building agents <br></br>people remember.
+                </h1>
 
                 <div>
-                  <button> Join meet</button>
-                  <button> Contant us</button>
+                  <button className={styles.btnPrimary}>Join agent meet</button>
+                  <button className={styles.btnBlur}> Contant us</button>
                 </div>
               </div>
 
-              <div> hidden</div>
-              <div>
+              <div> </div>
+              <div className={styles.heroDescription}>
                 <p>
-                  {" "}
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quisquam, quos. lorem ipsum dolor sit amet consectetur
-                  adipisicing elit. Quisquam, quos. lorem ipsum dolor sit amet
-                  consectetur adipisicing elit. Quisquam, quos. lorem ipsum
-                  dolor sit amet consectetur adipisicing elit. Quisquam, quos.
-                  lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quisquam, quos.
+                  Osmo came from constantly digging through old projects
+                  wondering, ‘How did I build that again?’ It is basically our
+                  personal toolbox, packed with components, techniques, tricks
+                  and tutorials—and it will keep growing
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        <section>
-          <h1>
-            We built Osmo to help creative developers work smarter, faster, and
-            better.
-          </h1>
-
-          <div>
-            <div>
-              <p>Trusted By</p>
-              <div>ImageSlider</div>
-            </div>
-
-            <div>
-              Carousel
-              <div>₹</div>
-            </div>
-          </div>
-        </section>
+        <Testimonials />
       </main>
     </div>
   );
