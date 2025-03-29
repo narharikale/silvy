@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import Testimonials from "./components/Testimonials/Testimonials";
 
-export const revalidate = 5 * 60 * 60;
+export const revalidate = 15;
 
 export default async function Home() {
   const buildTime = new Date().toTimeString();
