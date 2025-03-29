@@ -1,0 +1,102 @@
+.container {
+  max-width: 100%;
+
+  margin-top: 200px;
+}
+
+.heading {
+  max-width: 750px;
+  margin: auto;
+
+  font-size: 3em;
+  font-weight: 500;
+  text-align: center;
+}
+
+.divider {
+  background-image: linear-gradient(
+    90deg,
+    #efeeec00,
+    #efeeec 25% 75%,
+    #efeeec00
+  );
+  width: 100%;
+  height: 1.5px;
+  opacity: 0.25;
+  max-width: 22.5em;
+  margin: 52px auto;
+}
+
+.imageNavigatorTitle {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #818180;
+}
+
+.imageNavigatorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.imageList {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.imageBtn {
+  cursor: pointer;
+  background-color: #ff4c24;
+  border-radius: 100em;
+  justify-content: center;
+  align-items: center;
+  width: 2em;
+  height: 2em;
+  padding: 0;
+  display: flex;
+  position: relative;
+  border: 0;
+}
+
+.imageBtn::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 100em;
+  z-index: -1;
+  border: 1px solid red;
+  transition: all 0.5s var(--cubic-default);
+}
+
+.imageBtn:global(.active)::after {
+  inset: -5px;
+}
+
+.image {
+  object-fit: cover;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  border-radius: 100%;
+}
+
+.nameTag {
+  opacity: 0;
+  pointer-events: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  background-color: #1f1f1f;
+  border-radius: 0.25rem;
+  padding: 0.33rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  position: absolute;
+  bottom: 0;
+  transform: translateY(160%);
+}
+
+.nameTagActive {
+  opacity: 1;
+}

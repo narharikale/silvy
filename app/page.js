@@ -4,8 +4,8 @@ import Testimonials from "./components/Testimonials/Testimonials";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
+    <div>
+      <main>
         <section className={styles.heroSection}>
           <div className={styles.homeHero}>
             <div className={styles.homeHeroInner}>
