@@ -2,6 +2,7 @@
   width: 100%;
   position: relative;
   background-color: black;
+  padding-top: 10rem;
 }
 
 .homeHero {
@@ -13,8 +14,8 @@
 }
 
 .homeHeroInner {
-  grid-column-gap: 6.25em;
-  grid-row-gap: max(5em, (35vh - 10em));
+  grid-column-gap: 6.25rem;
+  grid-row-gap: 4rem;
   grid-template-rows: auto auto;
   grid-template-columns: minmax(200px, 20.25em) 1fr;
   grid-auto-columns: 1fr;
@@ -33,7 +34,7 @@
   flex-flow: row;
   justify-content: flex-start;
   align-items: flex-start;
-  padding-top: 1.5em;
+  padding-top: 1.5rem;
   list-style: none;
   display: flex;
 }
@@ -45,7 +46,7 @@
 }
 
 .actionItemList li {
-  height: 1em;
+  height: 1rem;
   font-weight: 500;
   line-height: 1.4;
 }
@@ -57,10 +58,10 @@
 
 .heroTitle {
   margin: 0;
-  font-size: 5em;
+  font-size: 5rem;
   font-weight: 500;
-  margin-bottom: 2rem;
-  letter-spacing: -0.02em;
+  margin-bottom: 3rem;
+  letter-spacing: -0.02rem;
 }
 
 .btnPrimary {
@@ -78,13 +79,84 @@
   color: var(--color-light);
   height: 52px;
   padding: 0 24px;
-  border: 1px #000;
   font-size: 1rem;
   border-radius: 4px;
+  display: flex;
+  gap: 0.5rem;
+  border: 1px solid gray;
+  display: flex;
+  align-items: center;
+}
+
+.btnFaces {
+  width: 2.5rem;
+  height: fit-content;
 }
 
 .heroDescription {
   max-width: 400px;
   font-size: 1rem;
   font-weight: 500;
+}
+
+.heroVideo {
+  padding: 1rem 1rem 1.5rem 1rem;
+  transform-origin: 50% 100%;
+  cursor: pointer;
+  width: 20.25rem;
+  height: 16rem;
+  position: absolute;
+  inset: auto 0% 0% auto;
+  transform: translateY(65%);
+  backdrop-filter: blur(4em);
+  background-color: #ffffff12;
+}
+
+.video {
+  object-fit: cover;
+  z-index: -100;
+  background-position: 50%;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  position: absolute;
+  inset: -100%;
+}
+
+.heroVidInfo {
+  z-index: 1;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  font-family: monospace;
+
+  text-transform: uppercase;
+  font-family: DM Mono, monospace;
+  font-size: 0.75em;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.videoWrap {
+  z-index: 1;
+  aspect-ratio: 1.6;
+  background-color: #000;
+  border-radius: 0.25em;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.homeVideoStar {
+  z-index: 5;
+  pointer-events: none;
+  width: 10em;
+  position: absolute;
+  inset: 0% auto auto 0%;
+  transform: translate(-50%, -50%);
 }

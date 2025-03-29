@@ -1,8 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap");
 
 :root {
   --color-dark: black;
   --color-neutral-dark: #131313;
+  --color-primary: #ff4c24;
   --color-light: #efeeec;
   --font-primary: "Inter", sans-serif;
 }
@@ -23,6 +25,8 @@ body {
   font-family: var(--font-primary);
   font-weight: 500;
   line-height: 1;
+  max-width: 1900px;
+  margin: auto;
 }
 
 h1,
@@ -30,4 +34,9 @@ h2,
 h2,
 p {
   margin: 0;
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-dark);
 }
