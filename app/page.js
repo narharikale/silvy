@@ -2,8 +2,9 @@ import styles from "../styles/home.module.css";
 import Image from "next/image";
 
 import Testimonials from "./components/Testimonials/Testimonials";
+import MeetButton from "./components/MeetButton/MeetButton";
 
-export const revalidate = 15;
+export const revalidate = 180000;
 
 export default async function Home() {
   const buildTime = new Date().toTimeString();
@@ -36,7 +37,7 @@ export default async function Home() {
                 </h1>
 
                 <div style={{ display: "flex", gap: "2rem" }}>
-                  <button className={styles.btnPrimary}>Join agent meet</button>
+                  <MeetButton className={styles.btnPrimary} />
                   <button className={styles.btnBlur}>
                     <Image
                       width={30}
