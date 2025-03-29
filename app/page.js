@@ -3,7 +3,12 @@ import Image from "next/image";
 
 import Testimonials from "./components/Testimonials/Testimonials";
 
-export default function Home() {
+export const revalidate = 5 * 60 * 60;
+
+export default async function Home() {
+  const buildTime = new Date().toTimeString();
+  console.log(`[Server] Page built at: ${buildTime}`);
+
   return (
     <div>
       <main>
@@ -111,7 +116,7 @@ export default function Home() {
           </div>
         </section>
 
-        <Testimonials />
+        <Testimonials buildTime={buildTime} />
       </main>
     </div>
   );

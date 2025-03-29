@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import styles from "./Testimonials.module.css";
 import { testimonial } from "@/app/data/testimonial";
 
-export default function Testimonials() {
+export default function Testimonials({ buildTime }) {
   const [activeIndex, setActiveIndex] = useState(2);
   const carouselRef = useRef(null);
   const containerRef = useRef(null);
@@ -32,6 +32,10 @@ export default function Testimonials() {
 
   //   return () => clearInterval(interval);
   // }, [totalCards]);
+
+  useEffect(() => {
+    console.log(`Page was built at client: ${buildTime}`);
+  }, [buildTime]);
 
   useEffect(() => {
     updatePosition();
