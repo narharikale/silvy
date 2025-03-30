@@ -1,8 +1,8 @@
-'use client'
+"use client";
 
-import { Meet } from '../components/Meet/Meet';
-import { useEffect, useState } from 'react';
-import './styles.css';
+import { Meet } from "../components/Meet/Meet";
+import { useEffect, useState } from "react";
+import "./styles.css";
 
 export default function SalesAgent() {
   const [connectionDetails, setConnectionDetails] = useState(undefined);
@@ -10,10 +10,14 @@ export default function SalesAgent() {
 
   useEffect(() => {
     const fetchConnectionDetails = async () => {
-      const url = new URL('/api/connection', window.location.origin);
-      url.searchParams.append('roomName', '123room');
-      url.searchParams.append('participantName', 'sales-agent');
-      
+      const url = new URL("/api/connection", window.location.origin);
+
+      if (!url) {
+        throw new Error("URL is not present");
+      }
+      url.searchParams.append("roomName", "123room");
+      url.searchParams.append("participantName", "sales-agent");
+
       const connectionDetailsResp = await fetch(url.toString());
       const connectionDetailsData = await connectionDetailsResp.json();
       setConnectionDetails(connectionDetailsData);
@@ -23,19 +27,19 @@ export default function SalesAgent() {
   }, []);
 
   const preJoinChoices = {
-    username: 'sales-agent',
+    username: "sales-agent",
     videoEnabled: true,
     audioEnabled: true,
   };
 
   const handleJoinMeeting = () => {
-    //setIsJoined(true);
+    setIsJoined(true);
   };
 
   return (
-    <div style={{ height: '100vh' }}>
+    <div style={{ height: "100vh" }}>
       {!isJoined ? (
-        <button 
+        <button
           className="join-button"
           onClick={handleJoinMeeting}
           disabled={!connectionDetails}
@@ -43,7 +47,7 @@ export default function SalesAgent() {
           Join Meeting
         </button>
       ) : (
-        <Meet 
+        <Meet
           initialConnectionDetails={connectionDetails}
           initialPreJoinChoices={preJoinChoices}
         />
