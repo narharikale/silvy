@@ -1,14 +1,54 @@
-.meetOverlay {
+.container {
+  position: relative;
+}
+
+.popup {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  width: fit-content;
+  height: fit-content;
+  backdrop-filter: blur(4em);
+  background: #ffffff12;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 10px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  z-index: 1000;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(3px);
+  flex-direction: column;
+  user-select: none;
+  top: 60px;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 2;
+}
+
+.popupHeader {
+  display: flex;
+  justify-content: flex-end;
+  cursor: move;
+  padding: 8px;
+  background-color: transparent;
+  border-radius: 8px 8px 0 0;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.popupContent {
+  flex-grow: 1;
+  padding: 10px;
+}
+
+.resizeHandle {
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  cursor: nwse-resize;
+  border-radius: 4px;
 }
