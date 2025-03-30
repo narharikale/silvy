@@ -1,6 +1,6 @@
 import styles from "../styles/home.module.css";
 import Image from "next/image";
-
+import WebGLCanvas from "./components/WebGLCanvas";
 import Testimonials from "./components/Testimonials/Testimonials";
 import MeetButton from "./components/MeetButtonPopup/MeetButtonPopup";
 
@@ -14,6 +14,7 @@ export default async function Home() {
     <div>
       <main>
         <section className={styles.heroSection}>
+          <WebGLCanvas />
           <div className={styles.homeHero}>
             <div className={styles.homeHeroInner}>
               <div className={styles.actionItemContainer}>
@@ -36,7 +37,7 @@ export default async function Home() {
                   Start building agents <br></br>people remember.
                 </h1>
 
-                <div style={{ display: "flex", gap: "2rem" }}>
+                <div style={{ display: "flex", gap: "1rem" }}>
                   <MeetButton className={styles.btnPrimary} />
                   <button className={styles.btnBlur}>
                     <Image
@@ -55,7 +56,7 @@ export default async function Home() {
               <div className={styles.heroDescription}>
                 <p>
                   Osmo came from constantly digging through old projects
-                  wondering, ‘How did I build that again?’ It is basically our
+                  wondering, How did I build that again? It is basically our
                   personal toolbox, packed with components, techniques, tricks
                   and tutorials—and it will keep growing
                 </p>
