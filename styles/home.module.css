@@ -42,7 +42,7 @@
 .actionItemList {
   display: flex;
   flex-flow: column;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .actionItemList li {
@@ -52,7 +52,7 @@
 }
 
 .heroContent {
-  max-width: 800px;
+  max-width: 50rem;
   text-align: center;
 }
 
@@ -67,7 +67,7 @@
 .btnPrimary {
   background-color: var(--color-light);
   color: var(--color-neutral-dark);
-  height: 52px;
+  height: 3rem;
   padding: 0 24px;
   border: 0;
   font-size: 1rem;
@@ -77,7 +77,7 @@
 .btnBlur {
   background-color: #0000;
   color: var(--color-light);
-  height: 52px;
+  height: 3rem;
   padding: 0 24px;
   font-size: 1rem;
   border-radius: 4px;
@@ -136,7 +136,7 @@
   font-family: monospace;
 
   text-transform: uppercase;
-  font-family: DM Mono, monospace;
+  font-family: "DM Mono", monospace;
   font-size: 0.75em;
   font-weight: 400;
   line-height: 1;
@@ -155,8 +155,29 @@
 .homeVideoStar {
   z-index: 5;
   pointer-events: none;
-  width: 10em;
+  width: 10rem;
   position: absolute;
   inset: 0% auto auto 0%;
   transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 768px) {
+  .homeHeroInner {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .actionItemContainer {
+    display: none;
+  }
+
+  .heroVideo {
+    padding: 1rem 1rem 1.5rem;
+    cursor: pointer;
+    width: 28rem;
+    height: auto;
+    transform: none;
+    position: relative;
+    margin: auto;
+  }
 }

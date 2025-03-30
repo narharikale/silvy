@@ -3,12 +3,10 @@
 import styles from "./Navbar.module.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { Meet } from "../Meet/Meet";
+import MeetButton from "../MeetButton/MeetButton";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [showMeet, setShowMeet] = useState(false);
 
   return (
     <>
@@ -40,20 +38,9 @@ export default function Navbar() {
           <button type="submit" className={styles.secondaryButton}>
             Sign up
           </button>
-
-          <button
-            onClick={() => setShowMeet(true)}
-            className={styles.primaryButton}
-          >
-            Join Meet
-          </button>
+          <MeetButton className={styles.primaryButton} />
         </div>
       </nav>
-      {showMeet && (
-        <div className={styles.meetOverlay}>
-          <Meet onClose={() => setShowMeet(false)} />
-        </div>
-      )}
     </>
   );
 }

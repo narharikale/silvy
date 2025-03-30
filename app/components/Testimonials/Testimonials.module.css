@@ -1,11 +1,11 @@
 .container {
   max-width: 100%;
 
-  margin-top: 200px;
+  margin-top: 12rem;
 }
 
 .heading {
-  max-width: 750px;
+  max-width: 48rem;
   margin: auto;
 
   font-size: 3rem;

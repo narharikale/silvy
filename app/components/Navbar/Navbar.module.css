@@ -1,108 +1,108 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.4;
-    font-family: 'Inter', PP Neue Montreal, Arial, sans-serif;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.4;
+  font-family: "Inter", Arial, sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-.primaryButton {    
-    color: var(--color-dark);
-    background-color: var(--color-light);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 2.5em;
-    padding-left: 1em;
-    padding-right: 1em;
-    border-radius: 0.5em;
-    font-family: inherit;
-    font-weight: 500;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    border: none;
+.primaryButton {
+  color: var(--color-dark);
+  background-color: var(--color-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 0.5em;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  border: none;
 }
 
 .primaryButton:hover {
-    transform: translateY(-2px);
+  transform: translateY(-2px);
 }
 
-.secondaryButton {    
-    color: var(--color-light);
-    background-color: transparent;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    border: 0;
-    font-family: inherit;
-    font-weight: 500;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
+.secondaryButton {
+  color: var(--color-light);
+  background-color: transparent;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border: 0;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
 }
 
 .secondaryButton:hover {
-    opacity: 0.8;
-}
-  
-.btnSmall{
-    height: 2.5em;
-    padding-left: 1em;
-    padding-right: 1em;
-}
-  
-.menu{
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    gap: 2em;
+  opacity: 0.8;
 }
 
-.menuLink{
-    color: var(--color-light);
-    text-decoration: none;
-position: relative;
-    padding: 0;
-    transition: opacity 0.2s ease;
+.btnSmall {
+  height: 2.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.menu {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 2rem;
+}
+
+.menuLink {
+  color: var(--color-light);
+  text-decoration: none;
+  position: relative;
+  padding: 0;
+  transition: opacity 0.2s ease;
 }
 
 .menuLink:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .menuLink.active::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 0.5px;
-    background-color: var(--color-light);
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 0.5px;
+  background-color: var(--color-light);
 }
 
-.actions{
-    display: flex;
-    gap: 2em;
-    align-items: center;
+.actions {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
 }
 
-.logo{
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
-    font-size: 1.5rem;
-    font-weight: 600;
-    
-    width: 4em;
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  width: 4rem;
+  display: hidden;
 }
 
-.logoText{
-    color: var(--color-light);
-    text-decoration: none;
-
+.logoText {
+  color: var(--color-light);
+  text-decoration: none;
+  display: hidden;
 }

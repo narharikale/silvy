@@ -44,3 +44,10 @@ p {
 button {
   cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+  html,
+  body {
+    font-size: 12px;
+  }
+}
