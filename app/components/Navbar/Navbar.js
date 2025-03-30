@@ -3,7 +3,7 @@
 import styles from "./Navbar.module.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import MeetButton from "../MeetButton/MeetButton";
+import MeetButtonPopup from "../MeetButtonPopup/MeetButtonPopup";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -38,7 +38,7 @@ export default function Navbar() {
           <button type="submit" className={styles.secondaryButton}>
             Sign up
           </button>
-          <MeetButton className={styles.primaryButton} />
+          <MeetButtonPopup className={styles.primaryButton} />
         </div>
       </nav>
     </>

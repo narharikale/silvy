@@ -1,11 +1,17 @@
 "use client";
 
 import { useState, useRef } from "react";
-import styles from "./MeetButton.module.css";
+import styles from "./MeetButtonPopup.module.css";
 import { Meet } from "../Meet/Meet";
 
-export default function MeetButton({ className }) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function MeetButtonPopup({
+  isInitialPopupOpen = false,
+  showJoinButton = true,
+  initialConnectionDetails,
+  initialPreJoinChoices,
+  className,
+}) {
+  const [isOpen, setIsOpen] = useState(isInitialPopupOpen);
   const popupRef = useRef(null);
   let isDragging = false;
   let offsetX, offsetY;
@@ -50,20 +56,23 @@ export default function MeetButton({ className }) {
     document.removeEventListener("mouseup", stopResize);
   };
 
-  const handleClose = () => {
-    setIsOpen(false);
-  };
-
   return (
     <div>
-      <button onClick={() => setIsOpen(true)} className={className}>
-        Join Meet
-      </button>
+      {showJoinButton ? (
+        <button onClick={() => setIsOpen(true)} className={className}>
+          Join Meet
+        </button>
+      ) : null}
+
       {isOpen && (
         <div ref={popupRef} className={styles.popup}>
           <div className={styles.popupHeader} onMouseDown={startDrag}></div>
           <div className={styles.popupContent}>
-            <Meet onClose={() => setIsOpen(false)} />
+            <Meet
+              initialConnectionDetails={initialConnectionDetails}
+              initialPreJoinChoices={initialPreJoinChoices}
+              onClose={() => setIsOpen(false)}
+            />
           </div>
           <div className={styles.resizeHandle} onMouseDown={startResize}></div>
         </div>

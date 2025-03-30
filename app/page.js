@@ -2,7 +2,7 @@ import styles from "../styles/home.module.css";
 import Image from "next/image";
 
 import Testimonials from "./components/Testimonials/Testimonials";
-import MeetButton from "./components/MeetButton/MeetButton";
+import MeetButton from "./components/MeetButtonPopup/MeetButtonPopup";
 
 export const revalidate = 180000;
 

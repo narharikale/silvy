@@ -1,8 +1,9 @@
 "use client";
 
-import { Meet } from "../components/Meet/Meet";
 import { useEffect, useState } from "react";
-import "./styles.css";
+
+import MeetButtonPopup from "../components/MeetButtonPopup/MeetButtonPopup";
+import styles from "./sales.module.css";
 
 export default function SalesAgent() {
   const [connectionDetails, setConnectionDetails] = useState(undefined);
@@ -40,14 +41,16 @@ export default function SalesAgent() {
     <div style={{ height: "100vh" }}>
       {!isJoined ? (
         <button
-          className="join-button"
+          className={styles.joinButton}
           onClick={handleJoinMeeting}
           disabled={!connectionDetails}
         >
           Join Meeting
         </button>
       ) : (
-        <Meet
+        <MeetButtonPopup
+          showJoinButton={false}
+          isInitialPopupOpen={isJoined}
           initialConnectionDetails={connectionDetails}
           initialPreJoinChoices={preJoinChoices}
         />
