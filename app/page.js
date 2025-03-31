@@ -105,7 +105,10 @@ export default async function Home() {
                   <video
                     className={styles.video}
                     src="https://cdn.prod.website-files.com/6708f85ff3d3cba6aff436fb%2F670e5ef201603b3a7dda3aa9_Osmo-V12-Reel-Tiny_compressed-transcode.mp4"
-                    autoPlay={true}
+                    autoPlay
+                    muted
+                    playsInline
+                    loop
                   />
                 </div>
 
