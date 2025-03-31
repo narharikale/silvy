@@ -4,14 +4,8 @@ import { useState, useRef } from "react";
 import styles from "./MeetButtonPopup.module.css";
 import { Meet } from "../Meet/Meet";
 
-export default function MeetButtonPopup({
-  isInitialPopupOpen = false,
-  showJoinButton = true,
-  initialConnectionDetails,
-  initialPreJoinChoices,
-  className,
-}) {
-  const [isOpen, setIsOpen] = useState(isInitialPopupOpen);
+export default function MeetButtonPopup({ className, source }) {
+  const [isOpen, setIsOpen] = useState(false);
   const popupRef = useRef(null);
   let isDragging = false;
   let offsetX, offsetY;
@@ -58,21 +52,15 @@ export default function MeetButtonPopup({
 
   return (
     <div>
-      {showJoinButton ? (
-        <button onClick={() => setIsOpen(true)} className={className}>
-          Join Meet
-        </button>
-      ) : null}
+      <button onClick={() => setIsOpen(true)} className={className}>
+        Join Meet
+      </button>
 
       {isOpen && (
         <div ref={popupRef} className={styles.popup}>
           <div className={styles.popupHeader} onMouseDown={startDrag}></div>
           <div className={styles.popupContent}>
-            <Meet
-              initialConnectionDetails={initialConnectionDetails}
-              initialPreJoinChoices={initialPreJoinChoices}
-              onClose={() => setIsOpen(false)}
-            />
+            <Meet source={source} onClose={() => setIsOpen(false)} />
           </div>
           <div className={styles.resizeHandle} onMouseDown={startResize}></div>
         </div>

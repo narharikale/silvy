@@ -14,7 +14,9 @@ export default async function Home() {
     <div>
       <main>
         <section className={styles.heroSection}>
-          <WebGLCanvas />
+          <video className={styles.bgVideo} autoPlay loop muted>
+            <source src="/assets/test2.webm" type="video/mp4" />
+          </video>
           <div className={styles.homeHero}>
             <div className={styles.homeHeroInner}>
               <div className={styles.actionItemContainer}>

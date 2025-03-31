@@ -6,44 +6,33 @@ import {
   PreJoin,
   VideoConference,
 } from "@livekit/components-react";
-import {
-  ExternalE2EEKeyProvider,
-  VideoPresets,
-  Room,
-  DeviceUnsupportedError,
-} from "livekit-client";
-import { useRouter } from "next/navigation";
-import { useState, useCallback, useMemo, useEffect } from "react";
-import { decodePassphrase } from "../../../lib/client-utils";
+import { VideoPresets, Room } from "livekit-client";
+import { useState, useCallback, useMemo } from "react";
 import styles from "./Meet.module.css";
+import { ParticipantsList } from "./ParticipantsList";
 
 const CONN_DETAILS_ENDPOINT = "/api/connection";
 
-export function Meet({
-  onClose,
-  initialConnectionDetails,
-  initialPreJoinChoices,
-}) {
-  const [preJoinChoices, setPreJoinChoices] = useState(
-    initialPreJoinChoices || undefined
-  );
+export function Meet({ onClose, source }) {
+  const [preJoinChoices, setPreJoinChoices] = useState(undefined);
   const preJoinDefaults = useMemo(() => {
     return {
-      username: "",
+      username: source === "sales" ? "sales-agent" : "",
       videoEnabled: true,
       audioEnabled: true,
     };
-  }, []);
+  }, [source]);
 
-  const [connectionDetails, setConnectionDetails] = useState(
-    initialConnectionDetails || undefined
-  );
+  const [connectionDetails, setConnectionDetails] = useState(undefined);
 
   const handlePreJoinSubmit = useCallback(async (values) => {
     setPreJoinChoices(values);
     const url = new URL(CONN_DETAILS_ENDPOINT, window.location.origin);
     url.searchParams.append("roomName", "123room");
-    url.searchParams.append("participantName", values.username || "another");
+    url.searchParams.append(
+      "participantName",
+      source === "sales" ? "sales-agent" : values.username
+    );
 
     const connectionDetailsResp = await fetch(url.toString());
     const connectionDetailsData = await connectionDetailsResp.json();
@@ -51,17 +40,6 @@ export function Meet({
   }, []);
 
   const handlePreJoinError = useCallback(() => console.error(e), []);
-
-  // If we have initial values, we don't need to show the pre-join form
-  if (initialPreJoinChoices && initialConnectionDetails) {
-    return (
-      <VideoConferenceComponent
-        connectionDetails={initialConnectionDetails}
-        userChoices={initialPreJoinChoices}
-        onClose={onClose}
-      />
-    );
-  }
 
   return (
     <main data-lk-theme="default" className={styles.container}>
@@ -78,25 +56,19 @@ export function Meet({
           connectionDetails={connectionDetails}
           userChoices={preJoinChoices}
           onClose={onClose}
+          source={source}
         />
       )}
     </main>
   );
 }
 
-function VideoConferenceComponent({ connectionDetails, userChoices, onClose }) {
-  const e2eePassphrase =
-    typeof window !== "undefined" &&
-    decodePassphrase(location.hash.substring(1));
-
-  const worker =
-    typeof window !== "undefined" &&
-    e2eePassphrase &&
-    new Worker(new URL("livekit-client/e2ee-worker", import.meta.url));
-  const e2eeEnabled = !!(e2eePassphrase && worker);
-  const keyProvider = new ExternalE2EEKeyProvider();
-  const [e2eeSetupComplete, setE2eeSetupComplete] = useState(false);
-
+function VideoConferenceComponent({
+  connectionDetails,
+  userChoices,
+  onClose,
+  source,
+}) {
   const roomOptions = useMemo(() => {
     return {
       videoCaptureDefaults: {
@@ -124,35 +96,12 @@ function VideoConferenceComponent({ connectionDetails, userChoices, onClose }) {
 
   const room = useMemo(() => new Room(roomOptions), [roomOptions]);
 
-  useEffect(() => {
-    if (e2eeEnabled) {
-      keyProvider
-        .setKey(decodePassphrase(e2eePassphrase))
-        .then(() => {
-          room.setE2EEEnabled(true).catch((e) => {
-            if (e instanceof DeviceUnsupportedError) {
-              alert(
-                `You're trying to join an encrypted meeting, but your browser does not support it. Please update it to the latest version and try again.`
-              );
-              console.error(e);
-            } else {
-              throw e;
-            }
-          });
-        })
-        .then(() => setE2eeSetupComplete(true));
-    } else {
-      setE2eeSetupComplete(true);
-    }
-  }, [e2eeEnabled, room, e2eePassphrase]);
-
   const connectOptions = useMemo(() => {
     return {
       autoSubscribe: true,
     };
   }, []);
 
-  const router = useRouter();
   const handleError = useCallback((error) => {
     console.error(error);
     alert(
@@ -169,7 +118,6 @@ function VideoConferenceComponent({ connectionDetails, userChoices, onClose }) {
   return (
     <>
       <LiveKitRoom
-        connect={e2eeSetupComplete}
         room={room}
         token={connectionDetails.participantToken}
         serverUrl={connectionDetails.serverUrl}
@@ -181,6 +129,11 @@ function VideoConferenceComponent({ connectionDetails, userChoices, onClose }) {
         onError={handleError}
       >
         <VideoConference chatMessageFormatter={formatChatMessageLinks} />
+        {source === "sales" ? (
+          <ParticipantsList roomName={connectionDetails.roomName} />
+        ) : (
+          false
+        )}
       </LiveKitRoom>
     </>
   );
