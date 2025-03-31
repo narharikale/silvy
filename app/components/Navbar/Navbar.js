@@ -7,8 +7,11 @@ import MeetButtonPopup from "../MeetButtonPopup/MeetButtonPopup";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const hideNavbar = pathname === "/sales-agent";
 
-  return (
+  return hideNavbar ? (
+    <></>
+  ) : (
     <>
       <nav className={styles.navbar}>
         <div className={styles.logo}>
