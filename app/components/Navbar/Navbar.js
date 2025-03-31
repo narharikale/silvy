@@ -16,7 +16,7 @@ export default function Navbar() {
       <nav className={styles.navbar}>
         <div className={styles.logo}>
           <Link className={styles.logoText} href="/">
-            Phonio
+            PHONIO
           </Link>
         </div>
         <div className={styles.menu}>
