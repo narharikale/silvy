@@ -89,6 +89,14 @@
   border-radius: 4px;
 }
 
+.bgVideo {
+  position: absolute;
+  top: 0;
+  object-fit: contain;
+  min-width: 100%;
+  min-height: 100%;
+}
+
 .btnBlur {
   background-color: #0000;
   color: var(--color-light);
