@@ -1,36 +1,112 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Silvy - LiveKit Video Meeting Application
 
-## Getting Started
+A Next.js application that provides a video meeting interface using LiveKit, featuring participant management and real-time audio/video controls.
 
-First, run the development server:
+## Features
+
+- Real-time video and audio communication
+- Participant management interface
+- Ability to mute/unmute participants (audio and video)
+- Modern UI with responsive design
+
+## Environment Setup
+
+1. Create a `.env.local` file in the root directory with the following variables:
+
+```env
+LIVEKIT_API_KEY=your_api_key
+LIVEKIT_API_SECRET=your_api_secret
+LIVEKIT_URL=your_livekit_server_url
+```
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone <repository-url>
+cd silvy
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+
+```
+
+## Running the Application
+
+1. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `/app/components/Meet` - Video meeting components
+  - `Meet.js` - Main meeting component
+  - `ParticipantsList.js` - Participant management interface
+- `/app/api` - API routes
+  - `/connection` - Handles LiveKit connection setup
+  - `/participants` - Manages participant listing
+  - `/mute` - Controls participant audio/video muting
 
-## Learn More
+## Usage
 
-To learn more about Next.js, take a look at the following resources:
+1. Join a meeting:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   - Enter your name in the pre-join screen
+   - Enable/disable your camera and microphone
+   - Click "Join Meeting"
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. For sales agents:
 
-## Deploy on Vercel
+   - go to `/sales-agent`
+   - The application will automatically set your name as "sales-agent"
+   - You'll have access to participant controls
+   - You can mute/unmute other participants' audio and video
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Managing participants:
+   - View all participants in the right sidebar
+   - Use the audio (🔊/🔇) and video (🎥/📹) buttons to control participants
+   - The list automatically updates every 5 seconds
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## API Endpoints
+
+### GET /api/connection
+
+- Parameters:
+  - `roomName`: Name of the meeting room
+  - `participantName`: Name of the participant
+- Returns: Connection details including token and server URL
+
+### GET /api/participants
+
+- Parameters:
+  - `roomName`: Name of the meeting room
+- Returns: List of all participants in the room
+
+### POST /api/mute
+
+- Body:
+  ```json
+  {
+    "roomName": "string",
+    "participantIdentity": "string",
+    "trackSid": "string",
+    "muted": boolean
+  }
+  ```
+- Returns: Success/failure status of the mute operation
+
+## Development
+
+- The project uses Next.js 15.2.2 with the App Router
+- Built with React 19
+- Uses LiveKit SDK for real-time communication
+- ESLint for code linting
